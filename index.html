@@ -7,15 +7,15 @@
   <meta name="description" content="Controlla project webpage: structured latent geometry for identity-preserving multimodal affective control." />
   <style>
     :root {
-      --bg: #0f172a;
-      --surface: #111827;
-      --surface-soft: #1e293b;
+      --bg: #07111f;
+      --page: #0d1f35;
+      --surface: rgba(18, 44, 75, 0.96);
+      --surface-soft: rgba(26, 56, 103, 0.9);
       --text: #e2e8f0;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --accent-strong: #0ea5e9;
+      --accent-dark: #0ea5e9;
       --border: rgba(148, 163, 184, 0.16);
-      --radius: 24px;
     }
 
     * {
@@ -25,176 +25,202 @@
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 28%), #0f172a;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 28%), #07111f;
       color: var(--text);
-      line-height: 1.7;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+      line-height: 1.65;
     }
 
     header {
       padding: 72px 0 56px;
-      text-align: center;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 24%),
+        linear-gradient(135deg, #05111f 0%, #112a4d 100%);
+      color: #f8fafc;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.16), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(99, 102, 241, 0.16), transparent 22%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-title {
-      font-size: clamp(2.75rem, 5vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.06em;
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      line-height: 0.98;
       margin: 0;
-      line-height: 0.95;
+      letter-spacing: -0.06em;
+      color: #f8fafc;
     }
 
-    .hero-subtitle {
+    .subtitle {
       max-width: 760px;
-      margin: 24px auto 0;
-      color: var(--muted);
+      margin: 20px auto 18px;
       font-size: 1.15rem;
+      color: #cbd5e1;
     }
 
-    .hero-meta {
-      margin: 24px auto 0;
-      color: #cbd5e1;
-      font-size: 0.97rem;
+    .authors {
+      margin: 16px auto 28px;
+      color: #94a3b8;
+      font-size: 0.98rem;
+      line-height: 1.8;
+      max-width: 720px;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 24px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      border: none;
+      padding: 13px 22px;
       border-radius: 999px;
-      padding: 14px 22px;
       background: var(--accent);
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.18);
+      box-shadow: 0 16px 34px rgba(56, 189, 248, 0.24);
     }
 
     .button.secondary {
-      background: rgba(148, 163, 184, 0.12);
-      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .button.secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
     }
 
     main {
-      padding: 16px 0 72px;
+      padding: 44px 0 72px;
     }
 
     section {
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 34px;
-      margin-bottom: 24px;
-      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
-      backdrop-filter: blur(10px);
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 26px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
     }
 
     h2 {
       margin-top: 0;
-      font-size: 1.8rem;
+      font-size: 1.65rem;
       letter-spacing: -0.02em;
       color: #f8fafc;
     }
 
-    p,
-    li {
+    p {
+      margin-bottom: 0;
       color: var(--muted);
-      font-size: 1rem;
     }
 
     .grid {
       display: grid;
-      gap: 18px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
     }
 
-    .feature-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .feature-card {
-      border: 1px solid rgba(148, 163, 184, 0.14);
+    .mini-card {
+      border: 1px solid rgba(148, 163, 184, 0.12);
       border-radius: 20px;
       padding: 24px;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(10, 27, 47, 0.9);
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
-    .feature-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.1rem;
+    .mini-card:hover {
+      transform: translateY(-2px);
+      background: rgba(15, 31, 55, 0.96);
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
       color: #f8fafc;
     }
 
-    .figure-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      margin-top: 20px;
-    }
-
-    .figure-card {
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: #0f172a;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-    }
-
-    .figure-card img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-
-    .figure-card figcaption {
-      padding: 18px 16px 20px;
-      font-size: 0.95rem;
+    .mini-card p {
       color: var(--muted);
-      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .placeholder {
+      border: 2px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 22px;
+      padding: 34px 24px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(12, 25, 45, 0.75);
+      margin-top: 18px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .image-box {
+      min-height: 180px;
+      border-radius: 20px;
+      background: rgba(10, 27, 47, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 0.95rem;
     }
 
     ul {
       padding-left: 20px;
-      margin: 0;
+      color: #e2e8f0;
     }
 
     footer {
       text-align: center;
       color: var(--muted);
-      padding: 30px 0 20px;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
       font-size: 0.9rem;
     }
 
-    @media (max-width: 720px) {
-      .hero-actions {
-        flex-direction: column;
-      }
+    code {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #3730a3;
     }
   </style>
 </head>
@@ -202,146 +228,119 @@
   <header>
     <div class="container">
       <h1 class="hero-title">Controlla</h1>
-      <p class="hero-subtitle">
-        Explore identity-preserving multimodal affective control through structured latent geometry.
+      <p class="subtitle">
+        Learning controllability via graph-constrained latent geometry for identity-preserving multimodal affective control.
       </p>
-      <p class="hero-meta">
-        Reference-guided affective editing with text, audio, and visual control. Built for expressive, identity-aware transformations.
+      <p class="authors">
+        Jamuna S. Murthy — MS Ramaiah Institute of Technology<br />
+        Amin Karimi Monsefi — The Ohio State University<br />
+        Rajiv Ramnath — The Ohio State University
       </p>
       <div class="hero-actions">
-        <a class="button" href="#results">View Gallery</a>
-        <a class="button secondary" href="#dataset">Benchmark</a>
-        <a class="button secondary" href="https://github.com/JamunaSMurthy/Controlla" target="_blank">GitHub</a>
+        <a class="button" href="#results">See Gallery</a>
+        <a class="button secondary" href="https://github.com/JamunaSMurthy/Controlla" target="_blank">View Code</a>
+        <a class="button secondary" href="#dataset">AffectHuman-43K</a>
+        <span class="button secondary" style="cursor: default; opacity: 0.75;">Paper preprint coming soon</span>
       </div>
     </div>
   </header>
 
   <main class="container">
     <section>
-      <h2>Core idea</h2>
+      <h2>Overview</h2>
       <p>
-        Controlla models affective edits as structured movement in latent space. It preserves source identity while applying expressive changes from text, audio, and reference-based control.
+        Controlla studies controllable generation as a problem of structured latent geometry rather than only inference-time conditioning. Given a reference identity and multimodal affective controls such as text and audio, the goal is to modify affective attributes while preserving the reference identity.
       </p>
-      <div class="grid feature-grid">
-        <article class="feature-card">
-          <h3>Identity preservation</h3>
-          <p>Maintains reference identity through anchored latent decomposition and guided editing.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Multimodal control</h3>
-          <p>Combines text, audio, and visual cues to produce expressive but consistent outputs.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Structured editing</h3>
-          <p>Uses latent graph constraints to keep transitions smooth and semantically meaningful.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Benchmark focus</h3>
-          <p>Designed for reference-grounded affective control evaluation with AffectHuman-43K.</p>
-        </article>
+    </section>
+
+    <section>
+      <h2>Key Idea</h2>
+      <div class="grid">
+        <div class="mini-card">
+          <h3>Identity Preservation</h3>
+          <p>Uses a reference image anchor to preserve identity while affective attributes are edited.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Multimodal Control</h3>
+          <p>Combines visual, textual, and audio affective signals for controlled generation.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Latent Geometry</h3>
+          <p>Models controllability through structured latent traversal and graph-consistent paths.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Benchmark</h3>
+          <p>Introduces AffectHuman-43K for reference-grounded affective controllability evaluation.</p>
+        </div>
       </div>
     </section>
 
     <section id="results">
-      <h2>Visual results</h2>
+      <h2>Qualitative Results</h2>
       <p>
-        Gallery examples from the Controlla prototype. Figures are drawn from the data folder and renamed sequentially to match page usage.
+        Example generations and visual comparisons will be added here. This section will show identity-preserving affective edits across different emotions and multimodal control inputs.
       </p>
-      <div class="figure-grid">
-        <figure class="figure-card">
-          <img src="data/figure1.png" alt="Reference identity example">
-          <figcaption><strong>Figure 1</strong> — Reference identity example.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure2.png" alt="Text-guided affective edit">
-          <figcaption><strong>Figure 2</strong> — Text-guided affective edit.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure3.png" alt="Audio-guided affective edit">
-          <figcaption><strong>Figure 3</strong> — Audio-guided affective edit.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure4.png" alt="Multimodal identity-preserving edit">
-          <figcaption><strong>Figure 4</strong> — Multimodal identity-preserving edit.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure5.png" alt="Latent trajectory visualization">
-          <figcaption><strong>Figure 5</strong> — Latent trajectory visualization.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure6.png" alt="Affective style transfer">
-          <figcaption><strong>Figure 6</strong> — Affective style transfer.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure7.png" alt="Neutral to surprise transformation">
-          <figcaption><strong>Figure 7</strong> — Neutral to surprise transformation.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure8.png" alt="Anger and sadness contrast">
-          <figcaption><strong>Figure 8</strong> — Anger and sadness contrast.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure9.png" alt="Identity-preserving benchmark sample">
-          <figcaption><strong>Figure 9</strong> — Identity-preserving benchmark sample.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure10.png" alt="Multimodal synthesis example">
-          <figcaption><strong>Figure 10</strong> — Multimodal synthesis example.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure11.jpg" alt="Dataset overview">
-          <figcaption><strong>Figure 11</strong> — Dataset overview.</figcaption>
-        </figure>
-        <figure class="figure-card">
-          <img src="data/figure12.jpg" alt="Qualitative comparison">
-          <figcaption><strong>Figure 12</strong> — Qualitative comparison.</figcaption>
-        </figure>
+      <div class="image-grid">
+        <div class="image-box">Input Reference<br />Coming Soon</div>
+        <div class="image-box">Text-Controlled Edit<br />Coming Soon</div>
+        <div class="image-box">Audio-Controlled Edit<br />Coming Soon</div>
+        <div class="image-box">Multimodal Edit<br />Coming Soon</div>
       </div>
     </section>
 
     <section id="dataset">
-      <h2>Dataset & benchmark</h2>
+      <h2>AffectHuman-43K Benchmark</h2>
       <p>
-        AffectHuman-43K is built for reference-grounded affective control. It emphasizes identity-disjoint splits, multimodal prompts, and expressive evaluation across eight emotion categories.
+        AffectHuman-43K is a controlled multimodal benchmark for evaluating reference-grounded, identity-preserving affective control. The benchmark is designed to test whether a model can modify affective attributes while preserving the identity specified by a reference image.
       </p>
-      <div class="grid feature-grid">
-        <article class="feature-card">
-          <h3>43K+ samples</h3>
-          <p>Large-scale dataset combining visual references with text and audio controls.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Identity-disjoint splits</h3>
-          <p>Reference identities are separated across training, validation, and test.</p>
-        </article>
-        <article class="feature-card">
-          <h3>Eight emotions</h3>
-          <p>Tests happiness, sadness, anger, fear, surprise, disgust, contempt, and neutral.</p>
-        </article>
+      <div class="grid">
+        <div class="mini-card">
+          <h3>42K+ Samples</h3>
+          <p>Image, reference image, text, and audio coverage for controlled evaluation.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Identity-Disjoint Splits</h3>
+          <p>Reference identity groups are separated across train, validation, and test splits.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Eight Emotions</h3>
+          <p>Includes happiness, sadness, anger, fear, surprise, disgust, contempt, and neutral.</p>
+        </div>
+      </div>
+      <div class="placeholder">
+        Dataset release information will be added here.
       </div>
     </section>
 
-    <section id="method">
-      <h2>Method summary</h2>
+    <section>
+      <h2>Method Summary</h2>
       <ul>
-        <li>Decomposes latent space into identity and affective components.</li>
-        <li>Applies graph-constrained latent transitions for smooth edits.</li>
-        <li>Supports multimodal conditioning from text, audio, and visual references.</li>
-        <li>Evaluates how well edits preserve identity, expression, and trajectory consistency.</li>
+        <li>Decomposes latent space into identity-related and affective attribute-related components.</li>
+        <li>Uses graph-constrained optimal transport to structure affective transitions.</li>
+        <li>Encourages smooth, graph-consistent trajectories between affective states.</li>
+        <li>Evaluates controllability using accuracy, trajectory smoothness, identity preservation, latent disentanglement, and geodesic consistency.</li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Citation</h2>
+      <p>Please cite our work if you find Controlla or AffectHuman-43K useful.</p>
+      <div class="placeholder">
+        BibTeX will be added after the preprint is available.
+      </div>
     </section>
 
     <section>
       <h2>Status</h2>
       <p>
-        This project page is under active development. Full paper, dataset, and benchmark details will be added soon.
+        This project webpage is currently under construction. Paper, dataset, code, benchmark details, and qualitative results will be updated soon.
       </p>
-      <div class="feature-card" style="background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.18);">
-        <p style="color: #cbd5e1; margin: 0;">All figures are sourced from the local <code>data</code> folder and renamed sequentially to match page usage.</p>
-      </div>
     </section>
   </main>
 
   <footer>
-    © 2026 Controlla Project. Built for GitHub Pages.</footer>
+    <p style="margin: 0 0 8px;">Code and project resources on <a href="https://github.com/JamunaSMurthy/Controlla" target="_blank" style="color: var(--accent); text-decoration: none;">GitHub</a>.</p>
+    © 2026 Controlla Project. Built for GitHub Pages.
+  </footer>
 </body>
 </html>
