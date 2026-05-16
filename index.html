@@ -295,7 +295,7 @@
     <div class="container">
       <h2 class="title is-3 has-text-centered">Baseline Comparisons</h2>
       <p class="subtitle is-5 has-text-centered">
-        Figures 1-6 compare Controlla against representative editing and control baselines.
+        Controlla consistently outperforms prior editing and controllable generation baselines by achieving stronger identity preservation, smoother attribute trajectories, and higher graph-consistent controllability across multimodal affective transformations.
       </p>
       <div class="results-carousel">
         <div class="item">
@@ -381,7 +381,7 @@
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h3 class="title is-4">Figure 13: Multimodal Neighborhoods</h3>
+        <h3 class="title is-4">Geodesic Traversal</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/figure13.png" alt="Figure 13 multimodal graph construction over affective examples.">
         </figure>
@@ -390,7 +390,7 @@
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h3 class="title is-4">Graph Topology</h3>
+        <h3 class="title is-4">Transforming Affective Expressions</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/graph2.png" alt="Constructed multimodal graph topology used for Controlla.">
         </figure>
@@ -414,30 +414,30 @@
 
     <div class="columns is-centered">
       <div class="column">
-        <h3 class="title is-4">J.1 Sensitivity to Structured Priors</h3>
+        <h3 class="title is-4">Challenging cases involving visually similar expressions</h3>
         <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure7.png" alt="Figure 7 behavior under sensitivity to structured priors.">
+          <img class="figure-image" src="./data/figure7.png" alt="Challenging cases involving visually similar expressions.">
         </figure>
       </div>
       <div class="column">
-        <h3 class="title is-4">J.2 Controllability-Diversity Trade-off</h3>
+        <h3 class="title is-4">Challenging cases with subtle semantic differences</h3>
         <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure8.png" alt="Figure 8 controllability and diversity trade-off under challenging conditions.">
+          <img class="figure-image" src="./data/figure8.png" alt="Challenging cases with subtle semantic differences.">
         </figure>
       </div>
     </div>
 
     <div class="columns is-centered">
       <div class="column">
-        <h3 class="title is-4">J.3 Behavior Under Multimodal Ambiguity</h3>
+        <h3 class="title is-4">Multimodal ambiguity with partially conflicting cues</h3>
         <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure9.png" alt="Figure 9 behavior under multimodal ambiguity.">
+          <img class="figure-image" src="./data/figure9.png" alt="Multimodal ambiguity with partially conflicting cues">
         </figure>
       </div>
       <div class="column">
-        <h3 class="title is-4">J.4 Computational Considerations</h3>
+        <h3 class="title is-4">Multimodal ambiguity under diverse identity and expression settings</h3>
         <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure10.png" alt="Figure 10 computational considerations for Controlla and prior methods.">
+          <img class="figure-image" src="./data/figure10.png" alt="Multimodal ambiguity under diverse identity and expression settings.">
         </figure>
       </div>
     </div>
@@ -480,13 +480,13 @@
       <div class="column">
         <img class="figure-image" src="./data/Figure14.png" alt="Figure 14 emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Figure 14 shows emotion variation across the eight AffectHuman-43K classes.
+          Multi-identity evaluation under shared target conditions
         </p>
       </div>
       <div class="column">
         <img class="figure-image" src="./data/Figure15.png" alt="Figure 15 additional emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Figure 15 extends the class-wise view with additional affective variation examples.
+          Class-wise view with additional affective variation examples
         </p>
       </div>
     </div>
@@ -500,43 +500,28 @@
         <h2 class="title is-3">Extensibility Beyond Affective Control</h2>
         <div class="content has-text-justified">
           <p>
-            Figures 11 and 12 summarize how the same factorized-control framework can generalize beyond affective editing through plug-in graph evaluation and broader graph-defined attributes.
+            Although Controlla is evaluated on affective transformations, its formulation is not limited to emotion control. The same structured latent-geometry framework can extend to any attribute space that can be represented as a graph, such as pose, age, expression intensity, lighting, style, or semantic object attributes. By replacing the affect graph with a task-specific attribute graph, Controlla can preserve identity while enabling smooth, controllable transitions across broader multimodal generation tasks.
           </p>
         </div>
       </div>
     </div>
 
-    <div class="content">
-      <h3 class="title is-4">K.1 Framework Generality</h3>
-      <p>
-        The method separates identity factors from graph-defined attribute factors, so the control interface can be reused with new semantic graphs.
-      </p>
-      <h3 class="title is-4">K.2 Plug-in Graph Evaluation</h3>
-      <p>
-        New attribute graphs can be evaluated through the same geometry-aware consistency and disentanglement checks.
-      </p>
-    </div>
-
     <div class="columns is-centered figure-panel">
       <div class="column">
-        <h3 class="title is-4">K.3 Quantitative Results</h3>
+        <h3 class="title is-4">Pose control-A plug-in pose graph enables ordered pose traversal while preserving
+reference identity.</h3>
         <img class="figure-image" src="./data/figure11.jpg" alt="Figure 11 extensibility quantitative results.">
       </div>
       <div class="column">
-        <h3 class="title is-4">K.4 Qualitative Analysis</h3>
+        <h3 class="title is-4">Lighting control-A plug-in lighting graph enables structured illumination changes while
+preserving identity and content.</h3>
         <img class="figure-image" src="./data/figure12.jpg" alt="Figure 12 qualitative analysis of extensibility beyond affective control.">
       </div>
     </div>
 
-    <div class="content">
-      <h3 class="title is-4">K.5 Scope of the Generalization Claim</h3>
-      <p>
-        The extensibility claim is scoped to graph-specifiable controls where identity preservation and attribute traversal can be measured with compatible multimodal embeddings.
-      </p>
     </div>
-  </div>
-</section>
 
+</section>
 <section class="section" id="results">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -615,7 +600,7 @@
         <figure class="figure-panel">
           <img class="figure-image" src="./data/sensitivity.png" alt="Sensitivity analysis results for Controlla.">
           <figcaption class="caption">
-            Sensitivity analysis after the main quantitative results.
+            Sensitivity Analysis. Controlla's performance improves with stronger graph constraints, showing a controllability-identity preservation tradeoff.
           </figcaption>
         </figure>
       </div>
@@ -662,7 +647,7 @@
       <div class="column is-8">
         <div class="content">
           <p>
-            This project page follows the academic webpage style popularized by the Nerfies template and uses figures directly from the local <code>data/</code> folder.
+            © 2026 Jamuna S. Murthy, Amin Karimi Monsefi, and Rajiv Ramnath. All rights reserved. This website is for informational purposes only and does not constitute an endorsement or recommendation of any products, services, or organizations mentioned herein.
           </p>
         </div>
       </div>
