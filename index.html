@@ -58,6 +58,10 @@
       padding-top: 0;
     }
 
+    .publication-teaser {
+      margin-top: 1.5rem;
+    }
+
     .teaser img {
       display: block;
       width: 100%;
@@ -215,8 +219,11 @@
         </a>
         <div class="navbar-dropdown">
           <a class="navbar-item" href="#abstract">Abstract</a>
-          <a class="navbar-item" href="#method">Method</a>
+          <a class="navbar-item" href="#baseline-comparisons">Baseline Comparisons</a>
+          <a class="navbar-item" href="#graph-construction">Graph Construction</a>
           <a class="navbar-item" href="#dataset">AffectHuman-43K</a>
+          <a class="navbar-item" href="#challenging-conditions">Challenging Conditions</a>
+          <a class="navbar-item" href="#extensibility">Extensibility</a>
           <a class="navbar-item" href="#results">Results</a>
           <a class="navbar-item" href="#BibTeX">BibTeX</a>
         </div>
@@ -238,22 +245,29 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>MS Ramaiah Institute of Technology,</span>
+            <span class="author-block"><sup>1</sup>Ramaiah Institute of Technology,</span>
             <span class="author-block"><sup>2</sup>The Ohio State University</span>
+          </div>
+
+          <div class="teaser publication-teaser">
+            <img src="./data/teaser.png" alt="Overview teaser for Controlla's identity-preserving multimodal affective control.">
+            <h2 class="subtitle has-text-centered">
+              <span class="controlla">Controlla</span> treats controllability as structured latent geometry for identity-preserving multimodal affective control.
+            </h2>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="./Controlla-Final.pdf" class="external-link button is-normal is-rounded is-dark">
+                <a href="arXiv:submit/7600203" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Paper</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="./Controlla-Final.pdf" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/datasets/iamjamuna/AffectHuman-43K" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-open-access"></i></span>
-                  <span>PDF</span>
+                  <span>AffectHuman-43K</span>
                 </a>
               </span>
               <span class="link-block">
@@ -263,9 +277,9 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="#dataset" class="external-link button is-normal is-rounded is-dark">
+                <a href="AffectHuman-43K" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="far fa-images"></i></span>
-                  <span>Data</span>
+                  <span>Demo</span>
                 </a>
               </span>
             </div>
@@ -276,35 +290,31 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="./data/figure1.png" alt="Qualitative comparison showing Controlla preserving identity and producing accurate affective edits.">
-      <h2 class="subtitle has-text-centered">
-        <span class="controlla">Controlla</span> treats controllability as structured latent geometry for identity-preserving multimodal affective control.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small" id="results">
+<section class="hero is-light is-small" id="baseline-comparisons">
   <div class="hero-body">
     <div class="container">
+      <h2 class="title is-3 has-text-centered">Baseline Comparisons</h2>
+      <p class="subtitle is-5 has-text-centered">
+        Figures 1-6 compare Controlla against representative editing and control baselines.
+      </p>
       <div class="results-carousel">
         <div class="item">
-          <img src="./data/figure2.png" alt="Qualitative comparison of editing baselines.">
+          <img src="./data/figure1.png" alt="Figure 1 baseline comparison showing Controlla preserving identity and affective control.">
         </div>
         <div class="item">
-          <img src="./data/figure3.png" alt="Eight emotion classes represented in AffectHuman-43K.">
+          <img src="./data/figure2.png" alt="Figure 2 qualitative comparison of editing baselines.">
         </div>
         <div class="item">
-          <img src="./data/figure4.png" alt="Fine-grained happiness, sadness, and anger controls.">
+          <img src="./data/figure3.png" alt="Figure 3 baseline comparison across affective controls.">
         </div>
         <div class="item">
-          <img src="./data/figure5.png" alt="Fine-grained fear and surprise controls.">
+          <img src="./data/figure4.png" alt="Figure 4 baseline comparison for fine-grained affective controls.">
         </div>
         <div class="item">
-          <img src="./data/figure6.png" alt="Fine-grained neutral, contempt, and disgust controls.">
+          <img src="./data/figure5.png" alt="Figure 5 baseline comparison for challenging affective controls.">
+        </div>
+        <div class="item">
+          <img src="./data/figure6.png" alt="Figure 6 baseline comparison for neutral, contempt, and disgust controls.">
         </div>
       </div>
     </div>
@@ -347,59 +357,87 @@
   </div>
 </section>
 
-<section class="section" id="method">
+<section class="section" id="graph-construction">
   <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Identity-Preserving Edits</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Multimodal Graph Construction</h2>
+        <div class="content has-text-justified">
           <p>
-            Controlla maps image, reference image, text, and audio into factorized identity and attribute spaces, then edits affective attributes while keeping the reference-grounded identity stable.
+            Controlla builds multimodal graph structure over image, text, and audio signals before aligning learned latent factors with graph-constrained optimal transport. These views show the interpolation paths, topology, and cross-modal neighborhood structure used by the control framework.
           </p>
-          <figure class="figure-panel">
-            <img class="figure-image" src="./data/figure7.png" alt="Identity-preserving calm and neutral edits across methods.">
-          </figure>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Affective Control</h2>
-          <p>
-            Emotion and identity graph priors are aligned with learned factors using graph-constrained optimal transport, encouraging consistent semantic traversal instead of unconstrained edits.
-          </p>
-          <figure class="figure-panel">
-            <img class="figure-image" src="./data/figure8.png" alt="Contempt, disdain, and cynicism edits across methods.">
-          </figure>
         </div>
       </div>
     </div>
 
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Latent Control</h2>
-
-        <h3 class="title is-4">Graph-consistent traversal</h3>
-        <div class="content has-text-justified">
-          <p>
-            Semantic edits are modeled as structured latent transformations. Fused Gromov-Wasserstein alignment organizes the attribute space around affective graph priors, while identity alignment stabilizes the reference-identity space.
-          </p>
-        </div>
+        <h3 class="title is-4">Graph Interpolation</h3>
         <figure class="figure-panel">
-            <img class="figure-image" src="./data/figure9.png" alt="Fear, surprise, and shock comparisons across editing methods.">
-            <figcaption class="caption">
-            Controlla maintains coherent affective labels across identities while competing methods show weaker semantic control or more visible identity drift.
-          </figcaption>
+          <img class="figure-image" src="./data/graphinterpolation.png" alt="Graph interpolation paths for affective control.">
         </figure>
+      </div>
+    </div>
 
-        <h3 class="title is-4">Graph-guided transitions</h3>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Figure 13: Multimodal Neighborhoods</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure13.png" alt="Figure 13 multimodal graph construction over affective examples.">
+        </figure>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Graph Topology</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/graph2.png" alt="Constructed multimodal graph topology used for Controlla.">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="challenging-conditions">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Behavior Under Challenging Conditions</h2>
         <div class="content has-text-justified">
           <p>
-            Graph-guided traversal produces smoother, more interpretable emotion transitions than linear interpolation while keeping identity consistent across the path.
+            Figures 7-10 highlight niche failure modes in previous work and show how graph-constrained control helps Controlla remain stable when priors, diversity, ambiguity, and compute pressure make the edit harder.
           </p>
         </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">J.1 Sensitivity to Structured Priors</h3>
         <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure10.png" alt="Cross-method qualitative comparison on affective edits.">
+          <img class="figure-image" src="./data/figure7.png" alt="Figure 7 behavior under sensitivity to structured priors.">
+        </figure>
+      </div>
+      <div class="column">
+        <h3 class="title is-4">J.2 Controllability-Diversity Trade-off</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure8.png" alt="Figure 8 controllability and diversity trade-off under challenging conditions.">
+        </figure>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">J.3 Behavior Under Multimodal Ambiguity</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure9.png" alt="Figure 9 behavior under multimodal ambiguity.">
+        </figure>
+      </div>
+      <div class="column">
+        <h3 class="title is-4">J.4 Computational Considerations</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure10.png" alt="Figure 10 computational considerations for Controlla and prior methods.">
         </figure>
       </div>
     </div>
@@ -440,22 +478,66 @@
 
     <div class="columns is-centered figure-panel">
       <div class="column">
-        <img class="figure-image" src="./data/figure11.jpg" alt="Identity consistency across pose changes.">
+        <img class="figure-image" src="./data/Figure14.png" alt="Figure 14 emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Pose variation analysis shows consistent affective appearance across yaw changes.
+          Figure 14 shows emotion variation across the eight AffectHuman-43K classes.
         </p>
       </div>
       <div class="column">
-        <img class="figure-image" src="./data/figure12.jpg" alt="Identity consistency across lighting changes.">
+        <img class="figure-image" src="./data/Figure15.png" alt="Figure 15 additional emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Lighting variation analysis tests robustness under left, frontal, and right illumination.
+          Figure 15 extends the class-wise view with additional affective variation examples.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="extensibility">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Extensibility Beyond Affective Control</h2>
+        <div class="content has-text-justified">
+          <p>
+            Figures 11 and 12 summarize how the same factorized-control framework can generalize beyond affective editing through plug-in graph evaluation and broader graph-defined attributes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h3 class="title is-4">K.1 Framework Generality</h3>
+      <p>
+        The method separates identity factors from graph-defined attribute factors, so the control interface can be reused with new semantic graphs.
+      </p>
+      <h3 class="title is-4">K.2 Plug-in Graph Evaluation</h3>
+      <p>
+        New attribute graphs can be evaluated through the same geometry-aware consistency and disentanglement checks.
+      </p>
+    </div>
+
+    <div class="columns is-centered figure-panel">
+      <div class="column">
+        <h3 class="title is-4">K.3 Quantitative Results</h3>
+        <img class="figure-image" src="./data/figure11.jpg" alt="Figure 11 extensibility quantitative results.">
+      </div>
+      <div class="column">
+        <h3 class="title is-4">K.4 Qualitative Analysis</h3>
+        <img class="figure-image" src="./data/figure12.jpg" alt="Figure 12 qualitative analysis of extensibility beyond affective control.">
+      </div>
+    </div>
+
+    <div class="content">
+      <h3 class="title is-4">K.5 Scope of the Generalization Claim</h3>
+      <p>
+        The extensibility claim is scoped to graph-specifiable controls where identity preservation and attribute traversal can be measured with compatible multimodal embeddings.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
@@ -529,6 +611,13 @@
             </tbody>
           </table>
         </div>
+
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/sensitivity.png" alt="Sensitivity analysis results for Controlla.">
+          <figcaption class="caption">
+            Sensitivity analysis after the main quantitative results.
+          </figcaption>
+        </figure>
       </div>
     </div>
 
