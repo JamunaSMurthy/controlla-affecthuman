@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Controlla learns controllability via graph-constrained latent geometry for identity-preserving multimodal affective control.">
-  <meta name="keywords" content="Controlla, controllable generation, latent geometry, multimodal affective control, AffectHuman-43K">
+  <meta name="description" content="Controlla is a graph-constrained latent-geometry framework for controllable multimodal generation, evaluated on identity-preserving affective control with AffectHuman-43K.">
+  <meta name="keywords" content="Controlla, controllable generation, latent geometry, graph-constrained optimal transport, multimodal generation, identity preservation, affective control, AffectHuman-43K, graph priors, diffusion models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Controlla: Learning Controllability via Graph-Constrained Latent Geometry</title>
 
@@ -99,23 +99,6 @@
       margin-top: 0.75rem;
     }
 
-    .publication-video {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      overflow: hidden;
-      border-radius: 0.35rem;
-      box-shadow: 0 0.5rem 1.5rem rgba(10, 10, 10, 0.08);
-    }
-
-    .publication-video iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
     .paper-cta {
       border: 1px solid #e8e8e8;
       border-radius: 0.35rem;
@@ -173,6 +156,32 @@
       margin-top: 0.3rem;
     }
 
+    .claim-box {
+      border-left: 4px solid #363636;
+      background: #fafafa;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+      border-radius: 0.25rem;
+    }
+
+    .claim-box strong {
+      color: #363636;
+    }
+
+    .contribution-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 0.45rem;
+      padding: 1.25rem;
+      background: #fff;
+      height: 100%;
+    }
+
+    .contribution-card h3 {
+      font-family: "Google Sans", sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
     .footer .icon-link {
       color: #363636;
       font-size: 1.35rem;
@@ -195,6 +204,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -205,6 +215,7 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
+
   <div id="main-navbar" class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
       <a class="navbar-item" href="https://github.com/JamunaSMurthy/Controlla" target="_blank" rel="noopener">
@@ -219,9 +230,12 @@
         </a>
         <div class="navbar-dropdown">
           <a class="navbar-item" href="#abstract">Abstract</a>
+          <a class="navbar-item" href="#core-idea">Core Idea</a>
+          <a class="navbar-item" href="#novelty">Novelty</a>
           <a class="navbar-item" href="#baseline-comparisons">Baseline Comparisons</a>
           <a class="navbar-item" href="#graph-construction">Graph Construction</a>
           <a class="navbar-item" href="#dataset">AffectHuman-43K</a>
+          <a class="navbar-item" href="#attribution">Why Geometry Matters</a>
           <a class="navbar-item" href="#challenging-conditions">Challenging Conditions</a>
           <a class="navbar-item" href="#extensibility">Extensibility</a>
           <a class="navbar-item" href="#results">Results</a>
@@ -237,7 +251,11 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Controlla: Learning Controllability via Graph-Constrained Latent Geometry</h1>
+
+          <h1 class="title is-1 publication-title">
+            Controlla: Learning Controllability via Graph-Constrained Latent Geometry
+          </h1>
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">Jamuna S. Murthy<sup>1</sup>,</span>
             <span class="author-block">Amin Karimi Monsefi<sup>2</sup>,</span>
@@ -250,43 +268,235 @@
           </div>
 
           <div class="teaser publication-teaser">
-            <img src="./data/teaser.png" alt="Overview teaser for Controlla's identity-preserving multimodal affective control.">
+            <img src="./data/teaser.png" alt="Overview teaser for Controlla's graph-constrained latent geometry framework.">
             <h2 class="subtitle has-text-centered">
-              <span class="controlla">Controlla</span> treats controllability as structured latent geometry for identity-preserving multimodal affective control.
+              <span class="controlla">Controlla</span> treats controllability as a learned property of latent geometry:
+              semantic attributes traverse graph-structured paths while reference identity remains stable.
             </h2>
+          </div>
+
+          <div class="claim-box has-text-left">
+            <p>
+              <strong>Central idea.</strong>
+              Most controllable generation methods impose control at inference time through prompts, guidance,
+              instructions, or auxiliary modules. Controlla instead asks whether controllability can be learned
+              as a structured representation property: a latent space where semantic changes follow graph-consistent
+              trajectories while identity-related factors remain preserved.
+            </p>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
+
               <span class="link-block">
-                <a href="arXiv:submit/7600203" class="external-link button is-normal is-rounded is-dark">
+                <a href="./Controlla-Final.pdf" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>arXiv</span>
+                  <span>Paper</span>
                 </a>
               </span>
+
               <span class="link-block">
-                <a href="https://huggingface.co/datasets/iamjamuna/AffectHuman-43K" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/datasets/iamjamuna/AffectHuman-43K" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
                   <span class="icon"><i class="ai ai-open-access"></i></span>
                   <span>AffectHuman-43K</span>
                 </a>
               </span>
+
               <span class="link-block">
                 <a href="https://github.com/JamunaSMurthy/Controlla" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                 </a>
               </span>
+
               <span class="link-block">
-                <a href="https://jamunasmurthy.github.io/Controlla-Demo" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://jamunasmurthy.github.io/Controlla-Demo" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
                   <span class="icon"><i class="far fa-images"></i></span>
                   <span>Demo</span>
                 </a>
               </span>
+
             </div>
           </div>
+
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Controllable multimodal generation is commonly formulated as an inference-time conditioning problem:
+            models receive prompts, instructions, guidance signals, or auxiliary controls and are expected to produce
+            outputs satisfying the requested edit. Although effective, this paradigm does not explicitly structure
+            how semantic attributes should evolve inside the model's representation space. As a result, semantic edits
+            may be endpoint-correct but trajectory-unstable, causing identity drift, inconsistent intermediate states,
+            or disagreement between modalities.
+          </p>
+
+          <p>
+            We propose <span class="controlla">Controlla</span>, a modular factorized-control framework that treats
+            controllability as a property of structured latent geometry. Controlla learns identity and attribute factors
+            from multimodal inputs and aligns them with graph priors using graph-constrained optimal transport. This
+            encourages controllable attributes to move along graph-consistent semantic paths while preserving a stable,
+            reference-grounded identity factor.
+          </p>
+
+          <p>
+            We evaluate this framework using affective identity-preserving multimodal control as a challenging testbed:
+            emotion requires fine-grained semantic change, identity preservation, and cross-modal consistency between
+            image, text, and audio. To support this evaluation, we construct
+            <span class="controlla">AffectHuman-43K</span>, a leakage-aware multimodal benchmark with identity-disjoint
+            splits, and introduce geometry-aware diagnostics for trajectory consistency and latent disentanglement.
+            Experiments show consistent improvements in controllability, identity preservation, trajectory smoothness,
+            and cross-modal alignment over editing, personalization, and control-based baselines.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Paper</h2>
+        <div class="paper-cta">
+          <p class="mb-4">
+            The full manuscript includes the latent-geometry formulation, graph-constrained optimal transport objective,
+            AffectHuman-43K construction protocol, evaluation metrics, main results, ablations, robustness studies,
+            and extended qualitative analysis.
+          </p>
+          <a href="./Controlla-Final.pdf" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Open Paper</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section is-light" id="core-idea">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Core Idea: Control as Latent Geometry</h2>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        Controlla starts from a simple observation: controllability is not only about whether a model can reach a
+        requested endpoint. A controllable model should also know how to move between semantic states without losing
+        identity, introducing unintended changes, or producing inconsistent intermediate representations.
+      </p>
+
+      <p>
+        Instead of treating control as an external instruction applied to an otherwise implicit latent space,
+        Controlla learns a factorized latent representation. One factor captures reference-grounded identity, while
+        another captures controllable semantic attributes. A graph prior defines how attributes are related, and
+        graph-constrained optimal transport aligns the learned attribute space with this structure. Generation then
+        proceeds by traversing the attribute factor along graph-consistent paths while keeping identity stable.
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="contribution-card">
+          <h3>Identity factor</h3>
+          <p>
+            Encodes the reference identity that should remain stable during semantic transformations.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>Attribute factor</h3>
+          <p>
+            Encodes controllable semantic attributes such as emotion, pose, lighting, style, or other graph-defined factors.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>Graph-constrained traversal</h3>
+          <p>
+            Aligns latent movement with semantic graph structure so edits become smooth, interpretable, and less prone to drift.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="novelty">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What Is New?</h2>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="contribution-card">
+          <h3>1. A representation-level view of controllability</h3>
+          <p>
+            Controlla reframes controllability as a property of latent geometry rather than only an inference-time
+            conditioning problem. The goal is not simply to add another control signal, but to structure the latent
+            directions along which semantic change occurs.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>2. Graph-constrained optimal transport for semantic control</h3>
+          <p>
+            The framework uses graph-constrained optimal transport to align learned identity and attribute factors
+            with graph priors. This encourages semantic transformations to preserve relational structure rather than
+            follow arbitrary interpolation paths.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="contribution-card">
+          <h3>3. Leakage-aware multimodal benchmark</h3>
+          <p>
+            AffectHuman-43K evaluates reference-grounded multimodal control with identity-disjoint splits, full
+            modality coverage, and explicit leakage checks. The benchmark is designed to test whether a model can
+            preserve visual identity while following heterogeneous affective control signals.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>4. Attribution through controlled ablations</h3>
+          <p>
+            Controlla is evaluated against no-graph, random-graph, fully-connected graph, contrastive-only,
+            metric-only, FGW/GW removal, modality ablation, and traversal variants. These controls test whether
+            gains come from meaningful graph geometry rather than additional conditioning capacity alone.
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -295,8 +505,12 @@
     <div class="container">
       <h2 class="title is-3 has-text-centered">Baseline Comparisons</h2>
       <p class="subtitle is-5 has-text-centered">
-        Controlla consistently outperforms prior editing and controllable generation baselines by achieving stronger identity preservation, smoother attribute trajectories, and higher graph-consistent controllability across multimodal affective transformations.
+        Controlla is compared against prompt-based editing, instruction-guided editing, personalization, ControlNet-style
+        conditioning, FLUX-style in-context editing, and hybrid identity-preserving pipelines. The qualitative comparisons
+        show that graph-constrained latent traversal improves identity stability and semantic coherence under matched
+        affective controls.
       </p>
+
       <div class="results-carousel">
         <div class="item">
           <img src="./data/figure1.png" alt="Figure 1 baseline comparison showing Controlla preserving identity and affective control.">
@@ -321,50 +535,24 @@
   </div>
 </section>
 
-<section class="section" id="abstract">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Controllable multimodal generation is commonly formulated as an inference-time conditioning problem using prompts, guidance, or auxiliary modules. While effective, such approaches do not explicitly structure how semantic attributes evolve, which can lead to identity drift and inconsistent cross-modal behavior.
-          </p>
-          <p>
-            We propose <span class="controlla">Controlla</span>, a modular factorized-control framework that treats controllability as a property of structured latent geometry. Controlla learns identity and attribute factors from multimodal inputs and aligns them with graph priors using graph-constrained optimal transport, encouraging attributes to follow graph-consistent trajectories while preserving reference identity.
-          </p>
-          <p>
-            To evaluate this setting, we construct <span class="controlla">AffectHuman-43K</span>, a leakage-aware multimodal benchmark for reference-grounded affective control, and introduce geometry-aware metrics for trajectory consistency and latent disentanglement. Experiments show consistent improvements in controllability, identity preservation, and cross-modal alignment.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Paper</h2>
-        <div class="paper-cta">
-          <p class="mb-4">
-            The full manuscript includes the formulation, AffectHuman-43K construction details, metrics, main results, ablations, and extended qualitative analysis.
-          </p>
-          <a href="./Controlla-Final.pdf" class="button is-normal is-rounded is-dark">
-            <span class="icon"><i class="fas fa-file-pdf"></i></span>
-            <span>Open Paper</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="graph-construction">
   <div class="container is-max-desktop">
+
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Multimodal Graph Construction</h2>
         <div class="content has-text-justified">
           <p>
-            Controlla builds multimodal graph structure over image, text, and audio signals before aligning learned latent factors with graph-constrained optimal transport. These views show the interpolation paths, topology, and cross-modal neighborhood structure used by the control framework.
+            The graph is not used as a post-hoc visualization. It defines a semantic structure that guides latent
+            organization and traversal. For affective control, the graph captures relationships among emotion states
+            using class-level affect structure and fine-grained valence-arousal variation. The same mechanism can be
+            instantiated with other graph-defined control spaces.
+          </p>
+
+          <p>
+            During training, graph-constrained optimal transport aligns the learned attribute factor with this graph
+            structure, while identity factors are regularized to remain stable under semantic traversal. During
+            generation, Controlla moves along graph-consistent paths rather than unconstrained linear interpolation.
           </p>
         </div>
       </div>
@@ -375,6 +563,10 @@
         <h3 class="title is-4">Graph Interpolation</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/graphinterpolation.png" alt="Graph interpolation paths for affective control.">
+          <figcaption class="caption">
+            Graph interpolation defines structured semantic paths between affective states instead of relying only on
+            endpoint conditioning.
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -384,6 +576,10 @@
         <h3 class="title is-4">Geodesic Traversal</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/figure13.png" alt="Figure 13 multimodal graph construction over affective examples.">
+          <figcaption class="caption">
+            Geodesic traversal encourages smooth changes through graph-neighboring semantic states while maintaining
+            stable reference identity.
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -393,65 +589,35 @@
         <h3 class="title is-4">Transforming Affective Expressions</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/graph2.png" alt="Constructed multimodal graph topology used for Controlla.">
+          <figcaption class="caption">
+            The affect graph serves as the primary experimental graph prior, but the framework only requires a control
+            space that can be represented through relational structure.
+          </figcaption>
         </figure>
       </div>
     </div>
+
   </div>
 </section>
 
-<section class="section" id="challenging-conditions">
+<section class="section is-light" id="dataset">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Behavior Under Challenging Conditions</h2>
-        <div class="content has-text-justified">
-          <p>
-            Figures 7-10 highlight niche failure modes in previous work and show how graph-constrained control helps Controlla remain stable when priors, diversity, ambiguity, and compute pressure make the edit harder.
-          </p>
-        </div>
-      </div>
-    </div>
 
-    <div class="columns is-centered">
-      <div class="column">
-        <h3 class="title is-4">Challenging cases involving visually similar expressions</h3>
-        <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure7.png" alt="Challenging cases involving visually similar expressions.">
-        </figure>
-      </div>
-      <div class="column">
-        <h3 class="title is-4">Challenging cases with subtle semantic differences</h3>
-        <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure8.png" alt="Challenging cases with subtle semantic differences.">
-        </figure>
-      </div>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column">
-        <h3 class="title is-4">Multimodal ambiguity with partially conflicting cues</h3>
-        <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure9.png" alt="Multimodal ambiguity with partially conflicting cues">
-        </figure>
-      </div>
-      <div class="column">
-        <h3 class="title is-4">Multimodal ambiguity under diverse identity and expression settings</h3>
-        <figure class="figure-panel">
-          <img class="figure-image" src="./data/figure10.png" alt="Multimodal ambiguity under diverse identity and expression settings.">
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="dataset">
-  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">AffectHuman-43K</h2>
         <div class="content has-text-justified">
           <p>
-            AffectHuman-43K is a leakage-aware benchmark designed for emotion-aligned controlled evaluation. Identity is visually specified by a reference image, while text and audio provide affective control signals.
+            AffectHuman-43K is a leakage-aware benchmark for reference-grounded affective control. It is not designed
+            as a naturally co-recorded multimodal identity dataset. Instead, identity is specified by a visual reference
+            image, while text and audio provide affective control signals. This deliberately separates identity
+            preservation from controllable semantic change.
+          </p>
+
+          <p>
+            We use affective control as the primary testbed because it stresses several aspects of controllability at
+            once: semantic accuracy, identity preservation, smooth transition behavior, multimodal consistency, and
+            robustness to subtle expression differences.
           </p>
         </div>
       </div>
@@ -462,14 +628,17 @@
         <span class="stat-value">42,469</span>
         <span class="stat-label">final usable samples</span>
       </div>
+
       <div class="stat-item">
         <span class="stat-value">26,241</span>
         <span class="stat-label">reference-identity groups</span>
       </div>
+
       <div class="stat-item">
         <span class="stat-value">8</span>
         <span class="stat-label">emotion classes</span>
       </div>
+
       <div class="stat-item">
         <span class="stat-value">0%</span>
         <span class="stat-label">cross-split ref-ID leakage</span>
@@ -480,27 +649,171 @@
       <div class="column">
         <img class="figure-image" src="./data/Figure14.png" alt="Figure 14 emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Multi-identity evaluation under shared target conditions
+          Multi-identity evaluation under shared target conditions.
         </p>
       </div>
+
       <div class="column">
         <img class="figure-image" src="./data/Figure15.png" alt="Figure 15 additional emotion variation with respect to eight AffectHuman-43K classes.">
         <p class="caption">
-          Class-wise view with additional affective variation examples
+          Class-wise view with additional affective variation examples.
         </p>
       </div>
     </div>
+
+  </div>
+</section>
+
+<section class="section" id="attribution">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Why Geometry Matters</h2>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        A central question is whether Controlla's gains come from graph-constrained latent geometry or simply from
+        additional fusion, factorization, or adapter capacity. We address this through controlled ablations that remove
+        or replace the graph structure while keeping the overall framework comparable.
+      </p>
+
+      <p>
+        Removing graph alignment weakens controllability and trajectory consistency. Random and fully-connected graphs
+        perform worse than meaningful affective graphs, showing that the improvement is not caused by arbitrary
+        regularization. Removing FGW or GW degrades attribute controllability or identity stability, indicating that
+        both semantic graph alignment and identity-structure preservation contribute to the final behavior.
+      </p>
+
+      <p>
+        Geometry-aware scores such as latent disentanglement and geodesic consistency are treated as mechanistic
+        diagnostics: they test whether the learned representation exhibits the intended structure. The broader
+        controllability claim is supported jointly by independent endpoint accuracy, identity preservation, trajectory
+        smoothness, human preference, cross-dataset transfer, and ablation results.
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="contribution-card">
+          <h3>No-graph control</h3>
+          <p>
+            Tests whether factorization alone is sufficient without graph-constrained alignment.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>Random / fully-connected graphs</h3>
+          <p>
+            Tests whether any graph regularizer helps, or whether meaningful semantic topology is required.
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="contribution-card">
+          <h3>Traversal variants</h3>
+          <p>
+            Compares graph-consistent traversal against linear, spline, random-path, and fully-connected path alternatives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section is-light" id="challenging-conditions">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Behavior Under Challenging Conditions</h2>
+        <div class="content has-text-justified">
+          <p>
+            Controllability becomes difficult when semantic classes are visually similar, cues are ambiguous, or identity
+            and attribute changes compete. These examples highlight cases where prior editing methods often drift,
+            over-edit, or collapse subtle distinctions, while graph-constrained traversal encourages smoother and more
+            stable transitions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">Visually similar expressions</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure7.png" alt="Challenging cases involving visually similar expressions.">
+          <figcaption class="caption">
+            Subtle expression boundaries test whether the model changes the intended attribute without unnecessarily
+            altering identity.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="column">
+        <h3 class="title is-4">Subtle semantic differences</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure8.png" alt="Challenging cases with subtle semantic differences.">
+          <figcaption class="caption">
+            Fine-grained affective differences require structured traversal rather than coarse endpoint editing.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <h3 class="title is-4">Partially conflicting cues</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure9.png" alt="Multimodal ambiguity with partially conflicting cues.">
+          <figcaption class="caption">
+            Multimodal ambiguity tests whether the model can produce coherent control when text and audio signals are
+            not perfectly aligned.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="column">
+        <h3 class="title is-4">Diverse identity and expression settings</h3>
+        <figure class="figure-panel">
+          <img class="figure-image" src="./data/figure10.png" alt="Multimodal ambiguity under diverse identity and expression settings.">
+          <figcaption class="caption">
+            Robustness across identities shows whether semantic control generalizes without overfitting to specific
+            face or expression patterns.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="section" id="extensibility">
   <div class="container is-max-desktop">
+
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Extensibility Beyond Affective Control</h2>
         <div class="content has-text-justified">
           <p>
-            Although Controlla is evaluated on affective transformations, its formulation is not limited to emotion control. The same structured latent-geometry framework can extend to any attribute space that can be represented as a graph, such as pose, age, expression intensity, lighting, style, or semantic object attributes. By replacing the affect graph with a task-specific attribute graph, Controlla can preserve identity while enabling smooth, controllable transitions across broader multimodal generation tasks.
+            Controlla is evaluated primarily on affective transformations because affect provides a challenging and
+            measurable setting for identity-preserving multimodal control. However, the framework is not tied to
+            emotion labels. The same formulation can be instantiated with any control factor that admits a relational
+            structure, including pose, expression intensity, lighting, age, style, object attributes, or task-specific
+            semantic states.
+          </p>
+
+          <p>
+            In this view, the affect graph is one instance of a broader design principle: define a graph over the
+            semantic attribute space, align the learned attribute factor with that graph, and traverse the factor along
+            graph-consistent paths while preserving identity or content factors. The plug-in pose and lighting studies
+            demonstrate this mechanism beyond affective control.
           </p>
         </div>
       </div>
@@ -508,29 +821,44 @@
 
     <div class="columns is-centered figure-panel">
       <div class="column">
-        <h3 class="title is-4">Pose control-A plug-in pose graph enables ordered pose traversal while preserving
-reference identity.</h3>
-        <img class="figure-image" src="./data/figure11.jpg" alt="Figure 11 extensibility quantitative results.">
+        <h3 class="title is-4">Pose control</h3>
+        <img class="figure-image" src="./data/figure11.jpg" alt="Figure 11 plug-in pose graph extensibility results.">
+        <p class="caption">
+          A plug-in pose graph enables ordered pose traversal while preserving reference identity.
+        </p>
       </div>
+
       <div class="column">
-        <h3 class="title is-4">Lighting control-A plug-in lighting graph enables structured illumination changes while
-preserving identity and content.</h3>
-        <img class="figure-image" src="./data/figure12.jpg" alt="Figure 12 qualitative analysis of extensibility beyond affective control.">
+        <h3 class="title is-4">Lighting control</h3>
+        <img class="figure-image" src="./data/figure12.jpg" alt="Figure 12 plug-in lighting graph extensibility results.">
+        <p class="caption">
+          A plug-in lighting graph enables structured illumination changes while preserving identity and content.
+        </p>
       </div>
     </div>
 
-    </div>
-
+  </div>
 </section>
-<section class="section" id="results">
+
+<section class="section is-light" id="results">
   <div class="container is-max-desktop">
+
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
 
         <div class="content has-text-justified">
           <p>
-            Controlla improves emotion accuracy, trajectory smoothness, and human preference on AffectHuman-43K, while geometry-aware evaluation shows stronger latent disentanglement and graph consistency with competitive identity preservation.
+            Controlla improves endpoint emotion accuracy, trajectory smoothness, and human preference on
+            AffectHuman-43K. The largest gains are especially visible in trajectory-sensitive metrics, supporting the
+            central claim that controllability should be evaluated not only by endpoint correctness, but also by the
+            stability and coherence of semantic movement.
+          </p>
+
+          <p>
+            Geometry-aware diagnostics show stronger latent disentanglement and graph consistency, while independent
+            metrics such as accuracy, identity preservation, human preference, and cross-dataset transfer provide
+            complementary evidence that the learned geometry improves controllable generation behavior.
           </p>
         </div>
 
@@ -547,6 +875,7 @@ preserving identity and content.</h3>
                 <th>Test H</th>
               </tr>
             </thead>
+
             <tbody>
               <tr>
                 <td>ControlNet</td>
@@ -557,6 +886,7 @@ preserving identity and content.</h3>
                 <td>0.56</td>
                 <td>2.82</td>
               </tr>
+
               <tr>
                 <td>ICEdit</td>
                 <td>73.1</td>
@@ -566,6 +896,7 @@ preserving identity and content.</h3>
                 <td>0.64</td>
                 <td>3.32</td>
               </tr>
+
               <tr>
                 <td>FLUX.1 Kontext</td>
                 <td>74.3</td>
@@ -575,6 +906,7 @@ preserving identity and content.</h3>
                 <td>0.65</td>
                 <td>3.43</td>
               </tr>
+
               <tr>
                 <td>DreamBooth + CNet++</td>
                 <td>75.1</td>
@@ -584,6 +916,7 @@ preserving identity and content.</h3>
                 <td>0.65</td>
                 <td>3.47</td>
               </tr>
+
               <tr>
                 <td><strong>Controlla</strong></td>
                 <td><strong>77.6</strong></td>
@@ -600,7 +933,8 @@ preserving identity and content.</h3>
         <figure class="figure-panel">
           <img class="figure-image" src="./data/sensitivity.png" alt="Sensitivity analysis results for Controlla.">
           <figcaption class="caption">
-            Sensitivity Analysis. Controlla's performance improves with stronger graph constraints, showing a controllability-identity preservation tradeoff.
+            Sensitivity analysis. Increasing graph regularization improves controllability and trajectory structure,
+            illustrating the tradeoff between stronger graph constraints and identity-preserving semantic flexibility.
           </figcaption>
         </figure>
       </div>
@@ -609,22 +943,33 @@ preserving identity and content.</h3>
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
+
         <div class="content has-text-justified">
           <p>
-            Controlla builds on advances in controllable diffusion, instruction-based editing, multimodal representation learning, graph priors, and optimal transport.
+            Controlla builds on advances in controllable diffusion, instruction-guided editing, personalization,
+            multimodal representation learning, graph priors, and optimal transport. Unlike methods that primarily
+            impose external control at inference time, Controlla focuses on shaping the latent space in which control
+            occurs.
           </p>
+
           <p>
-            Related systems include <a href="https://github.com/lllyasviel/ControlNet" target="_blank" rel="noopener">ControlNet</a>, <a href="https://dreambooth.github.io/" target="_blank" rel="noopener">DreamBooth</a>, <a href="https://github.com/mlfoundations/open_clip" target="_blank" rel="noopener">CLIP</a>, and <a href="https://imagebind.metademolab.com/" target="_blank" rel="noopener">ImageBind</a>.
+            Related systems include
+            <a href="https://github.com/lllyasviel/ControlNet" target="_blank" rel="noopener">ControlNet</a>,
+            <a href="https://dreambooth.github.io/" target="_blank" rel="noopener">DreamBooth</a>,
+            <a href="https://github.com/mlfoundations/open_clip" target="_blank" rel="noopener">CLIP</a>, and
+            <a href="https://imagebind.metademolab.com/" target="_blank" rel="noopener">ImageBind</a>.
           </p>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
+
     <pre><code>@article{murthy2026controlla,
   author    = {Murthy, Jamuna S. and Monsefi, Amin Karimi and Ramnath, Rajiv},
   title     = {Controlla: Learning Controllability via Graph-Constrained Latent Geometry},
@@ -635,23 +980,29 @@ preserving identity and content.</h3>
 
 <footer class="footer">
   <div class="container">
+
     <div class="content has-text-centered">
       <a class="icon-link" href="./Controlla-Final.pdf" aria-label="Paper PDF">
         <i class="fas fa-file-pdf"></i>
       </a>
+
       <a class="icon-link" href="https://github.com/JamunaSMurthy/Controlla" target="_blank" rel="noopener" aria-label="GitHub repository">
         <i class="fab fa-github"></i>
       </a>
     </div>
+
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
           <p>
-            © 2026 Jamuna S. Murthy, Amin Karimi Monsefi, and Rajiv Ramnath. All rights reserved. This website is for informational purposes only and does not constitute an endorsement or recommendation of any products, services, or organizations mentioned herein.
+            © 2026 Jamuna S. Murthy, Amin Karimi Monsefi, and Rajiv Ramnath. All rights reserved.
+            This website presents research materials for Controlla and AffectHuman-43K. The framework,
+            benchmark, and examples are provided for research and informational purposes.
           </p>
         </div>
       </div>
     </div>
+
   </div>
 </footer>
 
